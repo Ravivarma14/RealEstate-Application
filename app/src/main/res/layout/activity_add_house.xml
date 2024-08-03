@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".presentation.ui.AddHouseActivity">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/iv_home_picture"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/gradient_background"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_btn_upload_img"
+            app:layout_constraintStart_toStartOf="@id/iv_home_picture"
+            app:layout_constraintEnd_toEndOf="@id/iv_home_picture"
+            app:layout_constraintTop_toTopOf="@id/iv_home_picture"
+            app:layout_constraintBottom_toBottomOf="@id/iv_home_picture"
+            android:layout_marginStart="20dp"
+            android:text="Upload Image"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/iv_btn_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_title"
+            app:layout_constraintStart_toEndOf="@id/iv_btn_back"
+            app:layout_constraintTop_toTopOf="@id/iv_btn_back"
+            app:layout_constraintBottom_toBottomOf="@id/iv_btn_back"
+            android:layout_marginStart="20dp"
+            android:text="Add New House"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_description_container"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="vertical"
+            android:layout_margin="15dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_home_picture">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_home_apartment"
+                android:text="Home/Apartment"
+                app:layout_constraintStart_toEndOf="@id/cv_home_img_container"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="18dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="3dp"
+                android:layout_marginStart="10dp"
+                android:textColor="#478FF1"
+                android:background="#F4F6F9"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_house_name_container"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_house_name"
+                android:text="House Name"
+                android:textSize="22sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/et_email"
+                android:textSize="26sp"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/edittext_border_style"/>
+
+        </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_Description"
+                android:text="Description"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#006EFF"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="10dp"
+                android:background="#006EFF"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll_detail_container"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="15dp"
+                    android:backgroundTint="@color/white"
+                    app:cardElevation="5dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="20dp"
+                            android:id="@+id/iv_sqft"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_blue_sqrt"/>
+
+                        <EditText
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:id="@+id/et_sqft"
+                            android:textSize="14sp"
+                            android:padding="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="1223"
+                            android:background="@drawable/edittext_border_style"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_info_sqft"
+                            android:text="sqft"
+                            android:layout_gravity="center_horizontal"
+                            android:drawablePadding="5dp"
+                            android:textColor="#8C8C8C"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="15dp"
+                    android:backgroundTint="@color/white"
+                    app:cardElevation="5dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="20dp"
+                            android:id="@+id/iv_bedrooms"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_blue_bedroom"/>
+
+                        <EditText
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:id="@+id/et_no_of_bedrooms"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="14sp"
+                            android:padding="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="3.0"
+                            android:background="@drawable/edittext_border_style"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_info_bedrooms"
+                            android:text="Bedroom"
+                            android:textColor="#8C8C8C"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="15dp"
+                    android:backgroundTint="@color/white"
+                    app:cardElevation="5dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="20dp"
+                            android:id="@+id/iv_bathroom"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_blue_bathtub"/>
+
+                        <EditText
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/et_no_of_bathrooms"
+                            android:textSize="14sp"
+                            android:padding="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="1.0"
+                            android:background="@drawable/edittext_border_style"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_info_bathrooms"
+                            android:text="Bathroom"
+                            android:textColor="#8C8C8C"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_info_house_added_by"
+                android:text="House Added by"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/et_house_owner_name"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:hint="Enter name"
+                android:padding="5dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/edittext_border_style"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_info_facilities"
+                android:text="Facilities"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/et_facilities"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:hint="Enter facilities"
+                android:padding="5dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/edittext_border_style"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_info_address"
+                android:text="Address"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="5dp"
+                android:background="#F2F2F2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_description_address"
+                android:text="Address"
+                app:layout_constraintStart_toEndOf="@id/cv_home_img_container"
+                app:layout_constraintTop_toBottomOf="@id/tv_house_name"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/ic_location"
+                android:drawablePadding="5dp"
+                android:textColor="#2A2B3F"
+                android:textSize="14sp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="#006EFF"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingStart="60dp"
+                android:paddingEnd="60dp"
+                android:layout_gravity="end"
+                android:text="Choose on Map"
+                android:textSize="22sp"
+                app:cornerRadius="50dp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="5dp"
+                android:background="#F2F2F2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_info_total_price"
+                android:text="Total Price"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll_price_container"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_price"
+                    android:text="Price"
+                    android:textSize="26sp"
+                    android:textColor="#006EFF"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/month"
+                    android:textSize="16sp"
+                    android:textColor="#8C8C8C"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:id="@+id/et_price"
+                    android:textSize="26sp"
+                    android:layout_gravity="end"
+                    android:padding="5dp"
+                    android:layout_marginStart="60dp"
+                    android:background="@drawable/edittext_border_style"/>
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_or_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="#006EFF"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingStart="60dp"
+                android:paddingEnd="60dp"
+                android:layout_gravity="end"
+                android:text="Add House"
+                android:textSize="22sp"
+                app:cornerRadius="50dp" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

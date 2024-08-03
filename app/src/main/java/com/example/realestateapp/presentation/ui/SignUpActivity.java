@@ -1,17 +1,11 @@
-package com.example.realestateapp;
+package com.example.realestateapp.presentation.ui;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.transition.Explode;
-import android.view.Window;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.example.realestateapp.R;
 import com.example.realestateapp.databinding.ActivitySignUpBinding;
 
 public class SignUpActivity extends AppCompatActivity {

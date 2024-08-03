@@ -1,13 +1,11 @@
-package com.example.realestateapp;
+package com.example.realestateapp.presentation.ui;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.transition.Explode;
-import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.realestateapp.R;
 import com.example.realestateapp.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
