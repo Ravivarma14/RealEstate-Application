@@ -77,14 +77,22 @@
                 android:layout_marginBottom="10dp"
                 android:textSize="20sp"/>
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:id="@+id/et_password"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/selected_toggle_bg_color">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:textSize="20sp"
                 android:padding="10dp"
-                android:background="@drawable/edittext_border_style"/>
+                android:inputType="textPassword"
+                android:background="@drawable/edittext_border_style"
+                android:id="@+id/et_password"
+                android:ems="15"/>
 
+        </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_signup"
