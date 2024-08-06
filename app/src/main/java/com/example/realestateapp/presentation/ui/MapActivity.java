@@ -7,6 +7,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,6 +18,9 @@ import androidx.core.app.ActivityCompat;
 import com.example.realestateapp.R;
 import com.example.realestateapp.databinding.ActivityMapActivityBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -42,6 +46,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private static String address="";
     FusedLocationProviderClient fusedLocationProviderClient;
 
+    private LocationRequest mLocationRequest= null;
+    private LocationCallback mLocationCallback = null;
+    private int LOCATION_REQUEST_INTERVAL = 5000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,15 +69,36 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(MapActivity.this);
 
         binding.ivCurrentLocation.setOnClickListener(V->{
-            Location cur=getLastLocation();
+            /*Location cur=getLastLocation();
             if(cur!=null) {
                 LatLng cur_location = new LatLng(cur.getLatitude(), cur.getLongitude());
                 myMap.addMarker(new MarkerOptions().position(cur_location).title("current location"));
-                myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cur_location, 18.0f));
+                myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cur_location, 16.0f));
                 address=getAddress(cur_location.latitude,cur_location.longitude);
                 house_latitude=cur_location.latitude;
                 house_longitude=cur_location.longitude;
-            }
+            }*/
+
+            mLocationCallback= new LocationCallback() {
+                @Override
+                public void onLocationResult(@NonNull LocationResult locationResult) {
+                    super.onLocationResult(locationResult);
+                    double lat  = locationResult.getLastLocation().getLatitude();
+                    double lng = locationResult.getLastLocation().getLongitude();
+
+                    fusedLocationProviderClient.removeLocationUpdates(mLocationCallback);
+
+                    LatLng cur_location = new LatLng(lat,lng);
+                    myMap.clear();
+                    myMap.addMarker(new MarkerOptions().position(cur_location).title("current location"));
+                    myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cur_location, 16.0f));
+                    address=getAddress(cur_location.latitude,cur_location.longitude);
+                    house_latitude=cur_location.latitude;
+                    house_longitude=cur_location.longitude;
+                }
+            };
+
+            createLocationRequest();
         });
 
         binding.btnSetLocation.setOnClickListener(v->{
@@ -87,6 +116,27 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         binding.ivBtnBack.setOnClickListener(v->{
             onBackPressed();
         });
+    }
+
+    private void createLocationRequest() {
+        mLocationRequest = LocationRequest.create();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(LOCATION_REQUEST_INTERVAL).setFastestInterval(LOCATION_REQUEST_INTERVAL);
+        requestLocationUpdate();
+    }
+
+    private void requestLocationUpdate() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED ) {
+
+            return;
+        }
+
+        fusedLocationProviderClient.requestLocationUpdates(
+                mLocationRequest,
+                mLocationCallback,
+                Looper.myLooper()
+        );
     }
 
     private String getAddress(double latitude, double longitude){
@@ -132,7 +182,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         myMap.clear();
         LatLng locaiton = new LatLng(latitude, longitude);
         myMap.addMarker(new MarkerOptions().position(locaiton).title("location"));
-        myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(locaiton, 18.0f));
+        myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(locaiton, 16.0f));
         address=getAddress(latitude,longitude);
     }
 
