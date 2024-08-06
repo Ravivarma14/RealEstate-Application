@@ -2,12 +2,12 @@
 
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:id="@+id/iv_home_picture"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/gradient_background"/>
@@ -32,6 +33,7 @@
             app:layout_constraintBottom_toBottomOf="@id/iv_home_picture"
             android:layout_marginStart="20dp"
             android:text="Upload Image"
+            android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="bold"/>
 
@@ -42,7 +44,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="20dp"
-            android:src="@drawable/ic_back"/>
+            android:src="@drawable/ic_back_white"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,133 +55,170 @@
             app:layout_constraintBottom_toBottomOf="@id/iv_btn_back"
             android:layout_marginStart="20dp"
             android:text="Add New House"
+            android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="bold"/>
 
         <LinearLayout
+            android:id="@+id/ll_description_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ll_description_container"
-            app:layout_constraintStart_toStartOf="parent"
-            android:orientation="vertical"
             android:layout_margin="15dp"
+            android:layout_marginStart="44dp"
+            android:orientation="vertical"
             android:paddingBottom="10dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_home_picture">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_home_apartment"
-                android:text="Home/Apartment"
-                app:layout_constraintStart_toEndOf="@id/cv_home_img_container"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="18dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="3dp"
-                android:layout_marginStart="10dp"
-                android:textColor="#478FF1"
-                android:background="#F4F6F9"/>
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ll_house_name_container"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="#F4F6F9"
+                    android:paddingStart="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="3dp"
+                    android:text="Home"
+                    android:textColor="#478FF1"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_house_name"
-                android:text="House Name"
-                android:textSize="22sp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tv_slash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#F4F6F9"
+                    android:paddingStart="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="3dp"
+                    android:text="/"
+                    android:textColor="#478FF1"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toEndOf="@id/cv_home_img_container"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:layout_height="wrap_content"
+                <TextView
+                    android:id="@+id/tv_apartment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#F4F6F9"
+                    android:paddingStart="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="3dp"
+                    android:text="Apartment"
+                    android:textColor="#478FF1"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toEndOf="@id/cv_home_img_container"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_house_name_container"
                 android:layout_width="match_parent"
-                android:id="@+id/et_email"
-                android:textSize="26sp"
-                android:layout_gravity="center"
-                android:padding="5dp"
-                android:layout_marginStart="20dp"
-                android:background="@drawable/edittext_border_style"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_house_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="House Name"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_house_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/edittext_border_style"
+                    android:padding="10dp"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_Description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_Description"
-                android:text="Description"
                 android:layout_gravity="center_horizontal"
-                android:textSize="18sp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:textColor="#006EFF"/>
+                android:text="Description"
+                android:textColor="#006EFF"
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:layout_marginTop="10dp"
-                android:background="#006EFF"/>
+                android:background="#006EFF" />
 
             <LinearLayout
+                android:id="@+id/ll_detail_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/ll_detail_container"
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="15dp"
-                    android:backgroundTint="@color/white"
-                    app:cardElevation="5dp"
                     android:layout_margin="10dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="5dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingStart="15dp"
-                        android:paddingEnd="15dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
                         android:layout_gravity="center_horizontal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingStart="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="15dp"
+                        android:paddingBottom="5dp">
 
                         <ImageView
+                            android:id="@+id/iv_sqft"
                             android:layout_width="30dp"
                             android:layout_height="20dp"
-                            android:id="@+id/iv_sqft"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/ic_blue_sqrt"/>
+                            android:src="@drawable/ic_blue_sqrt" />
 
                         <EditText
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
                             android:id="@+id/et_sqft"
-                            android:textSize="14sp"
-                            android:padding="5dp"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:text="1223"
-                            android:background="@drawable/edittext_border_style"/>
+                            android:background="@drawable/edittext_border_style"
+                            android:padding="5dp"
+                            android:text=""
+                            android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_info_sqft"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tv_info_sqft"
-                            android:text="sqft"
                             android:layout_gravity="center_horizontal"
                             android:drawablePadding="5dp"
+                            android:singleLine="true"
+                            android:text="sqft"
                             android:textColor="#8C8C8C"
-                            android:textSize="18sp"/>
+                            android:textSize="16sp" />
 
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -188,49 +227,50 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="15dp"
-                    android:backgroundTint="@color/white"
-                    app:cardElevation="5dp"
                     android:layout_margin="10dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="5dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingStart="15dp"
-                        android:paddingEnd="15dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
                         android:layout_gravity="center_horizontal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingStart="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="15dp"
+                        android:paddingBottom="5dp">
 
                         <ImageView
+                            android:id="@+id/iv_bedrooms"
                             android:layout_width="30dp"
                             android:layout_height="20dp"
-                            android:id="@+id/iv_bedrooms"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/ic_blue_bedroom"/>
+                            android:src="@drawable/ic_blue_bedroom" />
 
                         <EditText
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
                             android:id="@+id/et_no_of_bedrooms"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:textSize="14sp"
-                            android:padding="5dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:text="3.0"
-                            android:background="@drawable/edittext_border_style"/>
+                            android:background="@drawable/edittext_border_style"
+                            android:padding="5dp"
+                            android:text=""
+                            android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_info_bedrooms"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tv_info_bedrooms"
+                            android:layout_gravity="center_horizontal"
                             android:text="Bedroom"
                             android:textColor="#8C8C8C"
-                            android:layout_gravity="center_horizontal"
-                            android:textSize="18sp"/>
+                            android:singleLine="true"
+                            android:textSize="16sp" />
 
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -238,48 +278,49 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="15dp"
-                    android:backgroundTint="@color/white"
-                    app:cardElevation="5dp"
                     android:layout_margin="10dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="5dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingStart="15dp"
-                        android:paddingEnd="15dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
                         android:layout_gravity="center_horizontal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingStart="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="15dp"
+                        android:paddingBottom="5dp">
 
                         <ImageView
+                            android:id="@+id/iv_bathroom"
                             android:layout_width="30dp"
                             android:layout_height="20dp"
-                            android:id="@+id/iv_bathroom"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/ic_blue_bathtub"/>
+                            android:src="@drawable/ic_blue_bathtub" />
 
                         <EditText
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_gravity="center_horizontal"
                             android:id="@+id/et_no_of_bathrooms"
-                            android:textSize="14sp"
-                            android:padding="5dp"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:text="1.0"
-                            android:background="@drawable/edittext_border_style"/>
+                            android:background="@drawable/edittext_border_style"
+                            android:padding="5dp"
+                            android:text=""
+                            android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_info_bathrooms"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tv_info_bathrooms"
                             android:text="Bathroom"
                             android:textColor="#8C8C8C"
-                            android:textSize="18sp"/>
+                            android:singleLine="true"
+                            android:textSize="16sp" />
 
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -287,89 +328,91 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_info_house_added_by"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_info_house_added_by"
+                android:layout_marginStart="10dp"
                 android:text="House Added by"
                 android:textSize="16sp"
-                android:layout_marginStart="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
                 android:id="@+id/et_house_owner_name"
-                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:hint="Enter name"
-                android:padding="5dp"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/edittext_border_style"/>
+                android:background="@drawable/edittext_border_style"
+                android:hint="Enter name"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/tv_info_facilities"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_info_facilities"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
                 android:text="Facilities"
                 android:textSize="16sp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
                 android:id="@+id/et_facilities"
-                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:hint="Enter facilities"
-                android:padding="5dp"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/edittext_border_style"/>
+                android:background="@drawable/edittext_border_style"
+                android:hint="Enter facilities"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/tv_info_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_info_address"
-                android:text="Address"
-                android:textSize="16sp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:textStyle="bold"/>
+                android:text="Address"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:layout_marginTop="5dp"
-                android:background="#F2F2F2"/>
+                android:background="#F2F2F2" />
 
             <TextView
+                android:id="@+id/tv_description_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_description_address"
-                android:text="Address"
-                app:layout_constraintStart_toEndOf="@id/cv_home_img_container"
-                app:layout_constraintTop_toBottomOf="@id/tv_house_name"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:drawableLeft="@drawable/ic_location"
                 android:drawablePadding="5dp"
+                android:text="Address"
                 android:textColor="#2A2B3F"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/cv_home_img_container"
+                app:layout_constraintTop_toBottomOf="@id/tv_house_name" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_login"
+                android:id="@+id/btn_choose_on_map"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:layout_marginTop="30dp"
                 android:backgroundTint="#006EFF"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingStart="60dp"
-                android:paddingEnd="60dp"
-                android:layout_gravity="end"
+                android:paddingStart="40dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="40dp"
+                android:paddingBottom="10dp"
                 android:text="Choose on Map"
-                android:textSize="22sp"
+                android:textSize="16sp"
                 app:cornerRadius="50dp" />
 
 
@@ -377,54 +420,54 @@
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:layout_marginTop="5dp"
-                android:background="#F2F2F2"/>
+                android:background="#F2F2F2" />
 
             <TextView
+                android:id="@+id/tv_info_total_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_info_total_price"
-                android:text="Total Price"
-                android:textSize="16sp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:textStyle="bold"/>
+                android:text="Total Price"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/ll_price_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/ll_price_container"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_price"
-                    android:text="Price"
-                    android:textSize="26sp"
-                    android:textColor="#006EFF"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:textStyle="bold"/>
+                    android:text="Price"
+                    android:textColor="#006EFF"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="/month"
-                    android:textSize="16sp"
-                    android:textColor="#8C8C8C"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:textStyle="bold"/>
+                    android:text="/month"
+                    android:textColor="#8C8C8C"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <EditText
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
                     android:id="@+id/et_price"
-                    android:textSize="26sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:padding="5dp"
                     android:layout_marginStart="60dp"
-                    android:background="@drawable/edittext_border_style"/>
+                    android:background="@drawable/edittext_border_style"
+                    android:padding="10dp"
+                    android:textSize="22sp" />
 
             </LinearLayout>
 
@@ -432,17 +475,34 @@
                 android:id="@+id/btn_add_or_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:layout_marginTop="40dp"
                 android:backgroundTint="#006EFF"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingStart="60dp"
-                android:paddingEnd="60dp"
-                android:layout_gravity="end"
+                android:paddingStart="40dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="40dp"
+                android:paddingBottom="10dp"
                 android:text="Add House"
-                android:textSize="22sp"
+                android:textSize="16sp"
                 app:cornerRadius="50dp" />
 
         </LinearLayout>
+
+       <ProgressBar
+           android:layout_width="75dp"
+           android:layout_height="75dp"
+           android:indeterminate="true"
+           android:indeterminateDrawable="@drawable/progressbg"
+           android:progress="0"
+           android:max="100"
+           android:visibility="gone"
+           android:id="@+id/loading"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"/>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.core.widget.NestedScrollView>

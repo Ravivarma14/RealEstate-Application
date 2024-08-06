@@ -27,22 +27,36 @@ public class AdminChooseActivity extends AppCompatActivity {
     private void setListerners(){
         activityAdminChooseBinding.cvAddNewHouseContainer.setOnClickListener(v->{
             Intent intent=new Intent(this, AddHouseActivity.class);
+            intent.putExtra("addHouse",true);
             startActivity(intent);
             overridePendingTransition(R.animator.enter, R.animator.exit);
         });
 
         activityAdminChooseBinding.cvUpdateHouseContainer.setOnClickListener(v->{
             //use AddHouseActivity populated with existing details of House change in configuration of titles
-            Intent intent=new Intent(this, AddHouseActivity.class);
+            Intent intent=new Intent(this, HomeScreenActivity.class);
+            intent.putExtra("isForUpdateOrRemove",0);
             startActivity(intent);
             overridePendingTransition(R.animator.enter, R.animator.exit);
         });
 
         activityAdminChooseBinding.cvRemoveHouseContainer.setOnClickListener(v->{
             //Verify details to remove House use Details activity change in configuration of titles
-            Intent intent=new Intent(this, DetailsActivity.class);
+            Intent intent=new Intent(this, HomeScreenActivity.class);
+            intent.putExtra("isForUpdateOrRemove",1);
             startActivity(intent);
             overridePendingTransition(R.animator.enter, R.animator.exit);
         });
+
+        activityAdminChooseBinding.btnLogout.setOnClickListener(v->{
+            logout();
+        });
+    }
+
+    private void logout(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+        overridePendingTransition(R.animator.left_to_right, R.animator.right_to_left);
     }
 }

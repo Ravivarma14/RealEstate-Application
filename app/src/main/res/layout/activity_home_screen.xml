@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
+    android:fitsSystemWindows="true"
     tools:context=".presentation.ui.HomeScreenActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,22 +15,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/cl_title_container">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp"
-        android:id="@+id/tv_home_screen_info">
+        android:layout_marginTop="20dp"
+        android:id="@+id/ll_home_screen_info">
 
     <TextView
         android:id="@+id/tv_lets_find"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Let’s Find your"
+        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
-        android:layout_gravity="start"
         android:textColor="@color/black"
         android:textSize="20sp"/>
 
@@ -38,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Favorite Home"
-        android:layout_gravity="start"
+        android:layout_gravity="center_horizontal"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="24sp"/>
@@ -51,8 +53,9 @@
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp"
-        android:id="@+id/tv_choose_update_title_info">
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        android:id="@+id/ll_choose_update_title_info">
 
     <TextView
         android:layout_width="wrap_content"
@@ -90,10 +93,42 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cl_title_container"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/rv_home_list"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="#1D61E7"
+        android:padding="10dp"
+        android:text="Logout"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_no_houses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="There are no houses to Display!"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:textSize="24sp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

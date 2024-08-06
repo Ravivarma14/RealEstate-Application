@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
+    android:fitsSystemWindows="true"
     tools:context=".presentation.ui.LoginActivity">
 
     <com.google.android.material.card.MaterialCardView
@@ -47,8 +48,8 @@
                  android:layout_height="wrap_content"
                  android:layout_width="match_parent"
                  android:id="@+id/et_email"
-                 android:textSize="26sp"
-                 android:padding="5dp"
+                 android:textSize="20sp"
+                 android:padding="10dp"
                  android:layout_marginBottom="20dp"
                  android:background="@drawable/edittext_border_style"/>
 
@@ -63,8 +64,8 @@
                  android:layout_height="wrap_content"
                  android:layout_width="match_parent"
                  android:id="@+id/et_password"
-                 android:textSize="26sp"
-                 android:padding="5dp"
+                 android:textSize="20sp"
+                 android:padding="10dp"
                  android:background="@drawable/edittext_border_style"/>
 
 
