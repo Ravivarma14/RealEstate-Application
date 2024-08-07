@@ -35,6 +35,7 @@
                  android:textSize="32sp"
                  android:layout_gravity="center_horizontal"
                  android:layout_marginBottom="20dp"
+                 android:textColor="@color/black"
                  android:textStyle="bold"/>
 
              <TextView
@@ -42,6 +43,7 @@
                  android:layout_height="wrap_content"
                  android:text="Email"
                  android:layout_marginBottom="10dp"
+                 android:textColor="@color/black"
                  android:textSize="20sp"/>
 
              <EditText
@@ -51,6 +53,7 @@
                  android:textSize="20sp"
                  android:padding="10dp"
                  android:layout_marginBottom="20dp"
+                 android:textColor="@color/black"
                  android:background="@drawable/edittext_border_style"/>
 
              <TextView
@@ -58,6 +61,7 @@
                  android:layout_height="wrap_content"
                  android:text="Password"
                  android:layout_marginBottom="10dp"
+                 android:textColor="@color/black"
                  android:textSize="20sp"/>
 
              <com.google.android.material.textfield.TextInputLayout
@@ -71,6 +75,7 @@
                  android:textSize="20sp"
                  android:padding="10dp"
                  android:inputType="textPassword"
+                 android:textColor="@color/black"
                  android:background="@drawable/edittext_border_style"
                  android:id="@+id/et_password"
                  android:ems="15"/>
