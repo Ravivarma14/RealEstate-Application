@@ -17,6 +17,16 @@ public class HouseModel implements Serializable {
     double latitude;
     double longitude;
 
+    public String getAddedByEmail() {
+        return addedByEmail;
+    }
+
+    public void setAddedByEmail(String addedByEmail) {
+        this.addedByEmail = addedByEmail;
+    }
+
+    String addedByEmail;
+
     public double getLatitude() {
         return latitude;
     }
@@ -36,7 +46,7 @@ public class HouseModel implements Serializable {
     int pricePerMonth;
     byte[] houseImage;
 
-    public HouseModel(int id, int isHouse, String houseName, int sqft, int noOfBedrooms, int noOfBathrooms, String houseAddedBy, String facilities, String address, int pricePerMonth, byte[] houseImage, double latitude, double longitude) {
+    public HouseModel(int id, int isHouse, String houseName, int sqft, int noOfBedrooms, int noOfBathrooms, String houseAddedBy, String facilities, String address, int pricePerMonth, byte[] houseImage, double latitude, double longitude, String addedByEmail) {
         this.id=id;
         this.isHouse = isHouse;
         this.houseName = houseName;
@@ -50,6 +60,7 @@ public class HouseModel implements Serializable {
         this.houseImage=houseImage;
         this.latitude=latitude;
         this.longitude=longitude;
+        this.addedByEmail=addedByEmail;
     }
 
     public int isHouse() {

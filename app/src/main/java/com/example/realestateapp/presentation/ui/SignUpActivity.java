@@ -2,6 +2,8 @@ package com.example.realestateapp.presentation.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     ActivitySignUpBinding signUpBinding;
     SQLDBHelper sqldbHelper;
+    boolean isHouseOwner=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +31,19 @@ public class SignUpActivity extends AppCompatActivity {
             navLoginActivity();
         });
 
+        signUpBinding.isHouseOwnerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isHouseOwner=isChecked;
+            }
+        });
+
         signUpBinding.btnSignup.setOnClickListener(v->{
             String email=signUpBinding.etEmail.getText().toString().trim();
             String fullname=signUpBinding.etFullname.getText().toString().trim();
             String password=signUpBinding.etPassword.getText().toString().trim();
+            int isHouseOwner= this.isHouseOwner? 1: 0;
+            Log.d("TAG", "setListeners: houseOwner: "+ isHouseOwner);
             if(email.isEmpty()||fullname.isEmpty() || password.isEmpty()){
                 Toast.makeText(this,"Enter all fields",Toast.LENGTH_SHORT).show();
             }
@@ -44,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
                             Toast.makeText(this,"User already exist with given Email",Toast.LENGTH_SHORT).show();
                         }
                         else{
-                            boolean insert=sqldbHelper.registerUser(email,fullname,password);
+                            boolean insert=sqldbHelper.registerUser(email,fullname,password,isHouseOwner);
                             if(insert){
                                 Toast.makeText(this,"Registration Successful! Please Login",Toast.LENGTH_SHORT).show();
                                 navLoginActivity();

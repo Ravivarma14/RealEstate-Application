@@ -101,6 +101,18 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/isHouseOwnerSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                app:thumbTint="@color/white"
+                app:trackTint="@color/selected_toggle_bg_color"
+                android:textSize="20sp"
+                android:text="House Owner"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_signup"
                 android:layout_width="match_parent"

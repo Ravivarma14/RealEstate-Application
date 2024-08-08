@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -22,21 +23,35 @@ public class SQLDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create Table users(email TEXT primary key, name TEXT, password TEXT)");
-        db.execSQL("create Table houses(id INTEGER primary key AUTOINCREMENT, isHouse INTEGER, houseName TEXT, sqft INTEGER, noOfBedrooms INTEGER, noOfBathrooms INTEGER, houseAddedBy TEXT, facilities TEXT, address TEXT, pricePerMonth INTEGER, houseImage BLOB, latitude REAL, longitude REAL)");
+        db.execSQL("create Table users(email TEXT primary key, name TEXT, password TEXT, isHouseOwner INTEGER)");
+        db.execSQL("create Table houses(id INTEGER primary key AUTOINCREMENT, isHouse INTEGER, houseName TEXT, sqft INTEGER, noOfBedrooms INTEGER, noOfBathrooms INTEGER, houseAddedBy TEXT, facilities TEXT, address TEXT, pricePerMonth INTEGER, houseImage BLOB, latitude REAL, longitude REAL, addedByEmail TEXT)");
     }
 
     public ArrayList<HouseModel> getHouseList()
     {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursorHouses = db.rawQuery("select * from houses",null);
+        ArrayList<HouseModel> houseModelArrayList = getHouseListFromQuery(cursorHouses);
+        return houseModelArrayList;
+    }
 
+    public ArrayList<HouseModel> getOwnerHouseList(String email){
+        Log.d("TAG", "getOwnerHouseList: home owner: "+ email);
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursorHouses = db.rawQuery("select * from houses where addedByEmail=?",new String[]{email});
+        ArrayList<HouseModel> houseModelArrayList = getHouseListFromQuery(cursorHouses);
+        Log.d("TAG", "getOwnerHouseList: update house list: "+ cursorHouses.getCount());
+        return houseModelArrayList;
+    }
+
+    public ArrayList<HouseModel> getHouseListFromQuery(Cursor cursorHouses){
         ArrayList<HouseModel> houseModelArrayList = new ArrayList<>();
 
         if (cursorHouses.moveToFirst()) {
             do {
                 // on below line we are adding the data from
                 // cursor to our array list.
+                Log.d("TAG", "getHouseListFromQuery: house added by: "+ cursorHouses.getString(13) +" housenmae: "+cursorHouses.getString(2));
                 houseModelArrayList.add(new HouseModel(cursorHouses.getInt(0),
                         cursorHouses.getInt(1),
                         cursorHouses.getString(2),
@@ -49,14 +64,14 @@ public class SQLDBHelper extends SQLiteOpenHelper {
                         cursorHouses.getInt(9),
                         cursorHouses.getBlob(10),
                         cursorHouses.getDouble(11),
-                        cursorHouses.getDouble(12)
-                        ));
+                        cursorHouses.getDouble(12),
+                        cursorHouses.getString(13)
+                ));
             } while (cursorHouses.moveToNext());
         }
         cursorHouses.close();
         return houseModelArrayList;
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop Table if exists users");
@@ -77,6 +92,7 @@ public class SQLDBHelper extends SQLiteOpenHelper {
         contentValues.put("houseImage",house.getHouseImage());
         contentValues.put("latitude",house.getLatitude());
         contentValues.put("longitude",house.getLongitude());
+        contentValues.put("addedByEmail",house.getAddedByEmail());
 
         return contentValues;
     }
@@ -118,29 +134,38 @@ public class SQLDBHelper extends SQLiteOpenHelper {
             return false;
     }
 
-    public Boolean registerUser(String email, String name, String password){
+    public Boolean registerUser(String email, String name, String password, int isHouseOwner){
         SQLiteDatabase myDB=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         contentValues.put("email",email);
         contentValues.put("name",name);
         contentValues.put("password",password);
+        contentValues.put("isHouseOwner",isHouseOwner);
         long result=myDB.insert("users", null,contentValues);
         if(result==-1)
             return false;
         else
             return true;
     }
-    public Boolean login(String email, String password){
+    public Bundle login(String email, String password){
         SQLiteDatabase myDB=this.getWritableDatabase();
         Cursor cursor=myDB.rawQuery("Select * from users where email=? and password=?",new String[]{email,password});
 
         if(cursor.getCount()>0){
             cursor.moveToFirst();
-            cursor.getString(1);
+
+            Bundle bundle=new Bundle();
+            bundle.putBoolean("canLogin",true);
+            bundle.putString("userName",cursor.getString(1));
+            bundle.putInt("isHouseOwner", cursor.getInt(3));
+            bundle.putString("email",cursor.getString(0));
             Log.d("LOGIN","username: "+cursor.getString(1));
-            return true;
+            return bundle;
         }
-        else
-            return false;
+
+        Bundle bundle=new Bundle();
+        bundle.putBoolean("canLogin",false);
+        bundle.putInt("isHouseOwner", 0);
+        return bundle;
     }
 }

@@ -3,6 +3,7 @@ package com.example.realestateapp.presentation.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,8 +20,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loginBinding = ActivityLoginBinding.inflate(getLayoutInflater());
-        if(BitmapUtils.isLogin(this))
-            navHomeScreen(this,"done","done");
+        int isLoggedin=BitmapUtils.isLogin(this);
+        if(isLoggedin!=-1 && isLoggedin!=1) {
+            navHomeScreen(this, "done", "done",false);
+        }
         setContentView(loginBinding.getRoot());
 
         sqldbHelper=new SQLDBHelper(this);
@@ -37,13 +40,19 @@ public class LoginActivity extends AppCompatActivity {
             }
             else{
                 if(email.endsWith(".com") || email.endsWith(".COM")){
-                    if(email.equals("admin@gmail.com") && password.equals("987654")){
+                    /*if(email.equals("admin@gmail.com") && password.equals("987654")){
                         adminLogin();
                         return;
-                    }
-                    boolean islogin=sqldbHelper.login(email,password);
-                    if(islogin){
-                        navHomeScreen(this, email,password);
+                    }*/
+                    Bundle loginBundle=sqldbHelper.login(email,password);
+                    boolean canLogin=loginBundle.getBoolean("canLogin");
+                    int isHouseOwner=loginBundle.getInt("isHouseOwner");
+                    Log.d("TAG", "setListeners: houseowner2 ::"+isHouseOwner);
+                    if(canLogin){
+                        if(isHouseOwner==1)
+                            adminLogin(loginBundle);
+                        else
+                            navHomeScreen(this, email, password, isHouseOwner==1);
                     }
                     else{
                         Toast.makeText(this,"No account found, please Signup first",Toast.LENGTH_SHORT).show();
@@ -64,17 +73,18 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void adminLogin(){
+    private void adminLogin(Bundle houseOwnerbundle){
         Intent intent=new Intent(this, AdminChooseActivity.class);
+        intent.putExtras(houseOwnerbundle);
         startActivity(intent);
         overridePendingTransition(R.animator.enter, R.animator.exit);
 
         finish();
     }
 
-    private void navHomeScreen(Context context, String email, String password){
+    private void navHomeScreen(Context context, String email, String password, boolean isHouseOwner){
         Intent intent=new Intent(context, HomeScreenActivity.class);
-        BitmapUtils.setLogin(context,email,password);
+        BitmapUtils.setLogin(context,email,password, isHouseOwner);
         startActivity(intent);
         overridePendingTransition(R.animator.enter, R.animator.exit);
         Toast.makeText(context,"Login successful",Toast.LENGTH_SHORT).show();

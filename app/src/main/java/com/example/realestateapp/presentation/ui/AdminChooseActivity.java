@@ -14,13 +14,14 @@ import com.example.realestateapp.databinding.ActivityAdminChooseBinding;
 
 public class AdminChooseActivity extends AppCompatActivity {
 
+    public static Bundle houseOwnerBundle;
     ActivityAdminChooseBinding activityAdminChooseBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityAdminChooseBinding=ActivityAdminChooseBinding.inflate(getLayoutInflater());
         setContentView(activityAdminChooseBinding.getRoot());
-
+        houseOwnerBundle = getIntent().getExtras();
         setListerners();
     }
 

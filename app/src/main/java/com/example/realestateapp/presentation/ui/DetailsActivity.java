@@ -48,6 +48,7 @@ public class DetailsActivity extends AppCompatActivity {
         detailsBinding.tvNoOfBedrooms.setText(""+houseModel.getNoOfBedrooms());
         detailsBinding.tvNoOfBathrooms.setText(""+houseModel.getNoOfBathrooms());
         detailsBinding.tvHouseAddedByName.setText(houseModel.getHouseAddedBy());
+        detailsBinding.tvHouseAddedByEmail.setText(houseModel.getAddedByEmail());
         detailsBinding.tvDetailsOfFacilities.setText(houseModel.getFacilities());
         //TODO address has name address and long-lat (had to think)
         detailsBinding.tvDescriptionAddress.setText(houseModel.getAddress());

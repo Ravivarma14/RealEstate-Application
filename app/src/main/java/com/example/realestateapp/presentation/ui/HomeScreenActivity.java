@@ -43,11 +43,19 @@ public class HomeScreenActivity extends AppCompatActivity {
         context=HomeScreenActivity.this;
         setViews();
         SQLDBHelper sqldbHelper=new SQLDBHelper(this);
-        houseList=sqldbHelper.getHouseList();
-        if(!houseList.isEmpty())
+        if(isForUpdateOrRemove==0 || isForUpdateOrRemove==1){
+            Log.d("TAG", "onResume: update or remove: "+ isForUpdateOrRemove +" mail: "+ AdminChooseActivity.houseOwnerBundle.getString("email").trim());
+            houseList=sqldbHelper.getOwnerHouseList(AdminChooseActivity.houseOwnerBundle.getString("email").trim());
+        }
+        else {
+            houseList = sqldbHelper.getHouseList();
+        }
+
+        if (!houseList.isEmpty())
             setRecyclerView(houseList);
         else
             homeScreenBinding.tvNoHouses.setVisibility(View.VISIBLE);
+
         setListeners();
     }
 
@@ -97,7 +105,7 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     private void logout(){
         Intent intent = new Intent(context, LoginActivity.class);
-        BitmapUtils.setLogin(this,"","");
+        BitmapUtils.setLogin(this,"","",false);
         startActivity(intent);
         overridePendingTransition(R.animator.left_to_right, R.animator.right_to_left);
         finish();

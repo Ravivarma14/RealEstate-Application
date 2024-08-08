@@ -8,4 +8,9 @@
     </style>
 
     <style name="Theme.RealEstateApp" parent="Base.Theme.RealEstateApp" />
+
+    <style name="Theme.App" parent="Theme.Material3.Light">
+        <item name="colorPrimary">@color/selected_toggle_bg_color</item>
+        <item name="colorSurfaceVariant">@color/white</item>
+    </style>
 </resources>

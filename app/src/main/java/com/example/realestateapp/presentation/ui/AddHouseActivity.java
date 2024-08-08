@@ -94,6 +94,7 @@ public class AddHouseActivity extends AppCompatActivity {
             addHouseBinding.etHouseOwnerName.setText(houseModel.getHouseAddedBy());
             addHouseBinding.etFacilities.setText(houseModel.getFacilities());
             addHouseBinding.tvDescriptionAddress.setText(houseModel.getAddress());
+            address=houseModel.getAddress();
             addHouseBinding.etPrice.setText(""+houseModel.getPricePerMonth());
         }
     }
@@ -224,8 +225,9 @@ public class AddHouseActivity extends AppCompatActivity {
                     addHouseBinding.etHouseOwnerName.getText().toString(),
                     addHouseBinding.etFacilities.getText().toString(),
                     address, Integer.parseInt(addHouseBinding.etPrice.getText().toString()),
-                    imageToStore,latitude, longitude);
+                    imageToStore,latitude, longitude, AdminChooseActivity.houseOwnerBundle.getString("email"));
 
+        Log.d("TAG", "getHouseModel: while storing: "+AdminChooseActivity.houseOwnerBundle.getString("email") );
         return house;
     }
 
