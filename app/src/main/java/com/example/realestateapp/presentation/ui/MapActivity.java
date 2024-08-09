@@ -69,7 +69,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(MapActivity.this);
 
         binding.ivCurrentLocation.setOnClickListener(V->{
-            /*Location cur=getLastLocation();
+            Location cur=getLastLocation();
             if(cur!=null) {
                 LatLng cur_location = new LatLng(cur.getLatitude(), cur.getLongitude());
                 myMap.addMarker(new MarkerOptions().position(cur_location).title("current location"));
@@ -77,9 +77,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 address=getAddress(cur_location.latitude,cur_location.longitude);
                 house_latitude=cur_location.latitude;
                 house_longitude=cur_location.longitude;
-            }*/
+            }
 
-            mLocationCallback= new LocationCallback() {
+           /* mLocationCallback= new LocationCallback() {
                 @Override
                 public void onLocationResult(@NonNull LocationResult locationResult) {
                     super.onLocationResult(locationResult);
@@ -96,7 +96,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     house_latitude=cur_location.latitude;
                     house_longitude=cur_location.longitude;
                 }
-            };
+            };*/
 
             createLocationRequest();
         });
